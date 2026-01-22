@@ -179,6 +179,7 @@ setgov() {
 setsfreqs() {
     local prop_val limiter curprofile
     prop_val=$($getprop persist.sys.azenithconf.freqoffset)
+    [ -z "$prop_val" ] && prop_val="100"
     tmp=${prop_val//Disabled/100}
     limiter=${tmp//%/''}
 
