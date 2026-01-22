@@ -171,8 +171,8 @@ setgov() {
     done
     
     # Restore read-only permissions for all governor files after attempting to write to them.
-    $chmod 666 /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor 2>/dev/null
-    $chmod 666 /sys/devices/system/cpu/cpufreq/policy*/scaling_governor 2>/dev/null
+    $chmod 444 /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor 2>/dev/null
+    $chmod 444 /sys/devices/system/cpu/cpufreq/policy*/scaling_governor 2>/dev/null
 }
 
 
