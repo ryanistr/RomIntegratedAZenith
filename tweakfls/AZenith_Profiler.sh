@@ -95,7 +95,7 @@ zeshia() {
         fi
     fi
 
-    errmsg=$($chmod 0444 "$path" 2>&1)
+    errmsg=$($chmod 0666 "$path" 2>&1)
     if [ $? -ne 0 ]; then
         AZLog "WARN: Could not restore read-only permissions for $path. Reason: $errmsg"
     fi
