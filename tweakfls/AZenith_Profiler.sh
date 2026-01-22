@@ -95,7 +95,7 @@ zeshia() {
         fi
     fi
 
-    errmsg=$($chmod 0666 "$path" 2>&1)
+    errmsg=$($chmod 0444 "$path" 2>&1)
     if [ $? -ne 0 ]; then
         AZLog "WARN: Could not restore read-only permissions for $path. Reason: $errmsg"
     fi
@@ -218,7 +218,7 @@ setsfreqs() {
         }
         zeshia "$new_maxfreq" "$path/scaling_max_freq"
         zeshia "$cpu_minfreq" "$path/scaling_min_freq"
-        $chmod -f 666 /sys/devices/system/cpu/cpufreq/policy*/scaling_*_freq
+        $chmod -f 444 /sys/devices/system/cpu/cpufreq/policy*/scaling_*_freq
     done
 }
 
@@ -257,7 +257,7 @@ apply_game_freqs() {
         }
         zeshia "$cpu_maxfreq" "$path/scaling_max_freq"
         zeshia "$cpu_minfreq" "$path/scaling_min_freq"
-        $chmod -f 666 /sys/devices/system/cpu/cpufreq/policy*/scaling_*_freq
+        $chmod -f 644 /sys/devices/system/cpu/cpufreq/policy*/scaling_*_freq
     done
 }
 
@@ -414,7 +414,7 @@ performance_profile() {
 
     # Save governor
     CPU="/sys/devices/system/cpu/cpu0/cpufreq"
-    $chmod 666 "$CPU/scaling_governor"
+    $chmod 644 "$CPU/scaling_governor"
     default_gov=$(<"$CPU/scaling_governor")
     setprop persist.sys.azenith.defaultgov "$default_gov"
 
